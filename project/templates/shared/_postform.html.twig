@@ -1,0 +1,73 @@
+<div class="container mt-2">
+    {{ form_start(form) }}
+    <div class="py-2">{{ form_row(form.title) }}</div>
+    <div class="py-2">{{ form_row(form.content) }}</div>
+    <div class="py-2">{{ form_row(form.category) }}</div>
+    <div class="py-2">
+        <ul class="tags list-inline"
+            data-index="{{ form.tags|length > 0 ? form.tags|last.vars.name + 1 : 0 }}"
+            data-prototype="{{ form_widget(form.tags.vars.prototype)|e('html_attr') }}">
+            {% for tag in form.tags %}
+                <li class="list-inline-item w-25">{{ form_row(tag.label) }}</li>
+            {% endfor %}
+        </ul>
+        <button type="button" class="btn btn-outline-info add_item_link" data-collection-holder-class="tags">Ajouter un tag</button>
+    </div>
+    <button class="btn btn-outline-warning mb-4" type="submit">{{ button| default('Enregistrer') }}</button>
+
+    {{ form_end(form) }}
+</div>
+
+<script>
+
+    const addTagFormDeleteLink = (item) => {
+        const removeFormButton = document.createElement('button');
+        removeFormButton.innerText = 'Supprimer le tag';
+        removeFormButton.classList.add('btn', 'btn-danger');
+
+        item.append(removeFormButton);
+
+        removeFormButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            // remove the li for the tag form
+            item.remove();
+        });
+    }
+
+    const addFormToCollection = (e) => {
+        const collectionHolder = document.querySelector('.' + e.currentTarget.dataset.collectionHolderClass);
+
+        const item = document.createElement('li');
+        item.classList.add('list-inline-item', 'w-25');
+
+        item.innerHTML = collectionHolder
+            .dataset
+            .prototype
+            .replace(
+                /__name__/g,
+                collectionHolder.dataset.index
+            );
+
+        collectionHolder.appendChild(item);
+
+        collectionHolder.dataset.index++;
+
+        // add a delete link to the new form
+        addTagFormDeleteLink(item);
+    };
+
+    document
+        .querySelectorAll('.add_item_link')
+        .forEach(btn => {
+            btn.addEventListener("click", addFormToCollection)
+        });
+
+    document
+        .querySelectorAll('ul.tags li')
+        .forEach((tag) => {
+            addTagFormDeleteLink(tag)
+        })
+
+
+
+</script>

@@ -1,0 +1,15 @@
+{% extends('admin/base.html.twig') %}
+
+{% block title %} Go gym | {{ category.name }}
+{% endblock %}
+
+{% block intro %}
+    <div class="container-fluid d-inline-flex justify-content-between">
+        <h3>Éditer la catégorie {{ category.id }} - {{ category.name }}</h3>
+        <a href="">Modifier</a>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('shared/_categoryform.html.twig', { form: form, button: 'Modifier'}) }}
+{% endblock %}

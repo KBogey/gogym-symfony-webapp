@@ -1,0 +1,14 @@
+{% extends('admin/base.html.twig') %}
+
+{% block title %} Go gym | Ajouter un article
+{% endblock %}
+
+{% block intro %}
+    <div class="container-fluid d-inline-flex justify-content-between">
+        <h3>Ajouter un article</h3>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('shared/_postform.html.twig', { form: form, button: 'Créer'}) }}
+{% endblock %}

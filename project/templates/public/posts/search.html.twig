@@ -1,0 +1,23 @@
+{% extends 'public/base.html.twig' %}
+{% block title %}
+    Go gym | Recherche
+{% endblock %}
+
+{% block intro %}
+
+    {{ include('shared/_indexintro.html.twig', { indexTitle : "Votre recherche", indexDesciption:  {form: form.q} }) }}
+
+{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <div class="row">
+            {% for post in posts %}
+                {{ include('shared/_postcard.html.twig', { post: post }) }}
+            {% endfor %}
+        </div>
+        <div class="navigation d-flex justify-content-center small mb-5">
+            {{ knp_pagination_render(posts, 'shared/bootstrap_v5_pagination.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

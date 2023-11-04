@@ -1,0 +1,13 @@
+<div class="card m-3" style="width: 18rem;">
+    <img src="" class="card-img-top" alt="">
+    <div class="card-body">
+        <a class="card-title" href="{{ path('public.post.show', {postId: post.id}) }}">{{ post.title }}</a>
+        <div class="card-subtitle my-2 text-inline">
+            {% for tag in post.tags %}
+                <span class="px-1 bg-info-subtle">#{{ tag.label }}</span>
+            {% endfor %}
+        </div>
+
+        <p class="card-text">{{ post.content | slice(0, 50) }}...</p>
+    </div>
+</div>

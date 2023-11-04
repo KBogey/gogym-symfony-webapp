@@ -1,0 +1,14 @@
+{% extends('admin/base.html.twig') %}
+
+{% block title %} Go gym | Ajouter une catégorie
+{% endblock %}
+
+{% block intro %}
+    <div class="container-fluid d-inline-flex justify-content-between">
+        <h3>Ajouter une catégorie</h3>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('shared/_categoryform.html.twig', { form: form, button: 'Créer'}) }}
+{% endblock %}

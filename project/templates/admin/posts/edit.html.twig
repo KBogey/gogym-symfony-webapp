@@ -1,0 +1,15 @@
+{% extends('admin/base.html.twig') %}
+
+{% block title %} Go gym | {{ post.title }}
+{% endblock %}
+
+{% block intro %}
+    <div class="container-fluid d-inline-flex justify-content-between">
+        <h3>Éditer l'article {{ post.id }} - "{{ post.title }}"</h3>
+        <a href="">Modifier</a>
+    </div>
+{% endblock %}
+
+{% block body %}
+    {{ include('shared/_postform.html.twig', { form: form, button: 'Modifier'}) }}
+{% endblock %}

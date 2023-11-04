@@ -1,0 +1,56 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %} Go gym | Gérer les articles
+{% endblock %}
+
+{% block intro %}
+    <div class="container-fluid d-inline-flex justify-content-between mb-3">
+        <h3>Gérer les articles</h3>
+        <a href="{{ path('admin.posts.create') }}" class="btn btn-outline-success px-4 py-2">Ajouter un article</a>
+    </div>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Tags</th>
+                <th class="text-end">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.id }}</td>
+                    <td>{{ post.title }}</td>
+                    <td>{{ post.content }}</td>
+                    <td>
+                        {% for tag in post.tags %}
+                                <span class="bg-info-subtle px-1">#{{ tag.label }}</span>
+                        {% endfor %}
+                    </td>
+                    <td class="text-end">
+                        <a href="{{ path('admin.posts.edit', {postId: post.id}) }}" class="btn btn-outline-warning my-1">Éditer</a>
+                        <form method="post" action="{{ path('admin.posts.delete', {postId: post.id }) }}">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
+                            <button class="btn btn-outline-danger my-1">
+                                Supprimer
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

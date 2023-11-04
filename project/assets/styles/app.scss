@@ -1,0 +1,25 @@
+@import "custom";
+@import "~bootstrap/scss/bootstrap";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+:root {
+    --bs-body-font-family: 'JetBrains Mono', monospace;
+}
+
+.bg-pink-100 {
+    background-color: $pink-100;
+}
+
+.bg-cyan-200 {
+    background-color: $cyan-200;
+}
+
+.pink-100 {
+    color: $pink-100;
+}
+
+.cyan-200 {
+    color: $cyan-200;
+}
+

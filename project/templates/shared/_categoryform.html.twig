@@ -1,0 +1,6 @@
+<div class="container mt-2">
+    {{ form_start(form) }}
+    <div class="py-2">{{ form_row(form.name) }}</div>
+    <button class="btn btn-outline-warning" type="submit">{{ button| default('Enregistrer') }}</button>
+    {{ form_end(form) }}
+</div>
