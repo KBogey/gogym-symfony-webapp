@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Post\Post;
 use App\Repository\CommentRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;

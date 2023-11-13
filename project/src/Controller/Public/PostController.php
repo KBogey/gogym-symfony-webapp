@@ -2,12 +2,10 @@
 
 namespace App\Controller\Public;
 
-use App\Entity\Post;
 use App\Form\SearchType;
 use App\Model\SearchData;
 use App\Repository\CommentRepository;
-use App\Repository\PostRepository;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\Post\PostRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

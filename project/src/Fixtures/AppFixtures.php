@@ -4,12 +4,12 @@ namespace App\Fixtures;
 
 use App\Entity\Category;
 use App\Entity\Comment;
-use App\Entity\Post;
+use App\Entity\Post\Post;
 use App\Entity\Tag;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-Use Faker;
+use Faker;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture

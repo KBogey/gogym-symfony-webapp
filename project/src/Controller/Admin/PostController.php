@@ -2,10 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Post;
-use App\Entity\Tag;
+use App\Entity\Post\Post;
 use App\Form\Admin\PostType;
-use App\Repository\PostRepository;
+use App\Repository\Post\PostRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

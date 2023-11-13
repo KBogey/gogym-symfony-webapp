@@ -142,6 +142,7 @@
       <path value="$PROJECT_DIR$/project/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/project/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/project/vendor/fakerphp/faker" />
+      <path value="$PROJECT_DIR$/project/vendor/cocur/slugify" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

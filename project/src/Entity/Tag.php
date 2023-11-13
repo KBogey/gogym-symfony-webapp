@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Post\Post;
 use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
