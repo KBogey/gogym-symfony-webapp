@@ -45,12 +45,8 @@ class Post
     #[ORM\Column(type: 'string', length: 255)]
     private string $state = Post::STATES[0];
 
-    #[ORM\ManyToOne(inversedBy: 'posts')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Category $category = null;
-
-    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: false)]
-    private Collection $comments;
+    #[ORM\OneToOne(inversedBy: 'post', targetEntity: Thumbnail::class, cascade: ['persist', 'remove'])]
+    private ?Thumbnail $thumbnail = null;
 
     #[Assert\NotNull]
     #[ORM\Column(type: 'datetime_immutable')]
@@ -59,6 +55,13 @@ class Post
     #[Assert\NotNull]
     #[ORM\Column(type: 'datetime_immutable')]
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
+    #[ORM\OneToMany(mappedBy: 'post', targetEntity: Comment::class, orphanRemoval: false)]
+    private Collection $comments;
 
     #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'posts', cascade: ['persist'])]
     private Collection $tags;
@@ -71,6 +74,7 @@ class Post
         $this->tags = new ArrayCollection();
     }
 
+    #[ORM\PrePersist]
     public function prePersist()
     {
         $this->slug = (new Slugify())->slugify($this->title);
@@ -135,6 +139,42 @@ class Post
         return $this;
     }
 
+    public function getThumbnail(): ?Thumbnail
+    {
+        return $this->thumbnail;
+    }
+
+    public function setThumbnail(?Thumbnail $thumbnail): self
+    {
+        $this->thumbnail = $thumbnail;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -173,30 +213,6 @@ class Post
                 $comment->setPost(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeImmutable
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
-    {
-        $this->updatedAt = $updatedAt;
 
         return $this;
     }

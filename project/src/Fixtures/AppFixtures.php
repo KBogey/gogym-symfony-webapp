@@ -79,6 +79,7 @@ class AppFixtures extends Fixture
             $post = new Post();
             $post->setTitle($faker->words(mt_rand(1,8), true));
             $post->setContent($faker->paragraphs(mt_rand(2,5), true));
+            $post->setState(mt_rand(0,2) === 1 ? Post::STATES[0] : Post::STATES[1]);
             $post->setCategory($this->getReference(Category::class.'_'.mt_rand(1,3)));
             $post->addTag($this->getReference(Tag::class.'_'.mt_rand(1,25)));
 
