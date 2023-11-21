@@ -37,7 +37,7 @@ class HomeController extends AbstractController
             ]);
         }
 
-        $news = $postRepository->findBy(['category' => 1], ['createdAt' => 'desc']);
+        $news = $postRepository->findBy(['category' => 1, 'state' => ['STATE_PUBLISHED']], ['createdAt' => 'desc']);
         $diets = $postRepository->findBy(['category' => 2], ['createdAt' => 'desc']);
 
         $postsNews = $this->paginator->paginate(

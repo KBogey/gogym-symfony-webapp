@@ -74,7 +74,7 @@ class AppFixtures extends Fixture
             $this->addReference(Tag::class . '_' . $h, $tag);
         }
 
-        for($k=1; $k <=20; $k++)
+        for($k=1; $k <=50; $k++)
         {
             $post = new Post();
             $post->setTitle($faker->words(mt_rand(1,8), true));
@@ -88,12 +88,12 @@ class AppFixtures extends Fixture
 
         }
 
-        for($j=1; $j <= 25; $j++)
+        for($j=1; $j <= 75; $j++)
         {
             $comment = new Comment();
             $comment->setTitle($faker->words(mt_rand(1,8), true));
             $comment->setContent($faker->paragraphs(mt_rand(1,3), true));
-            $comment->setPost($this->getReference(Post::class.'_'.mt_rand(1,20)));
+            $comment->setPost($this->getReference(Post::class.'_'.mt_rand(1,50)));
             $comment->setUser($this->getReference(User::class. '_' . mt_rand(1,20)));
 
             $manager->persist($comment);

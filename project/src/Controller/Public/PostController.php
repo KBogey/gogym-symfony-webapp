@@ -2,6 +2,7 @@
 
 namespace App\Controller\Public;
 
+use App\Entity\Post\Post;
 use App\Form\SearchType;
 use App\Model\SearchData;
 use App\Repository\CommentRepository;
@@ -43,7 +44,7 @@ class PostController extends AbstractController
             ]);
         }
 
-        $news = $this->repository->findBy(['category' => 1 ], ['createdAt' => 'desc']);
+        $news = $this->repository->findBy(['category' => 1, 'state' => ['STATE_PUBLISHED'] ] , ['createdAt' => 'desc'] );
 
         $posts = $this->paginator->paginate(
             $news,
@@ -75,7 +76,7 @@ class PostController extends AbstractController
             ]);
         }
 
-        $diets = $this->repository->findBy(['category' => 2 ], ['createdAt' => 'desc']);
+        $diets = $this->repository->findBy(['category' => 2, 'state' => ['STATE_PUBLISHED'] ], ['createdAt' => 'desc']);
 
         $posts = $this->paginator->paginate(
             $diets,
@@ -89,8 +90,8 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/{postId}', name: 'public.post.show', methods: ['GET'])]
-    public function show($postId, Request $request): Response
+    #[Route('/post/{slug}', name: 'public.post.show', methods: ['GET'])]
+    public function show(Post $post, Request $request): Response
     {
         $searchData = new SearchData();
         $form = $this->createForm(SearchType::class, $searchData);
@@ -107,7 +108,6 @@ class PostController extends AbstractController
             ]);
         }
 
-        $post = $this->repository->find($postId);
         $comments = $this->commentRepository->findBy(['post' => $post], ['id' => 'desc']);
 
         return $this->render('public/posts/show.html.twig', [

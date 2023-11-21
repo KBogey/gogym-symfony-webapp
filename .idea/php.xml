@@ -143,6 +143,11 @@
       <path value="$PROJECT_DIR$/project/vendor/doctrine/doctrine-fixtures-bundle" />
       <path value="$PROJECT_DIR$/project/vendor/fakerphp/faker" />
       <path value="$PROJECT_DIR$/project/vendor/cocur/slugify" />
+      <path value="$PROJECT_DIR$/project/vendor/vich/uploader-bundle" />
+      <path value="$PROJECT_DIR$/project/vendor/jms/metadata" />
+      <path value="$PROJECT_DIR$/project/vendor/psr/clock" />
+      <path value="$PROJECT_DIR$/project/vendor/symfony/clock" />
+      <path value="$PROJECT_DIR$/project/vendor/symfony/polyfill-php83" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

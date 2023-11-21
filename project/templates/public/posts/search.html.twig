@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body %}
+    {% if posts is not empty%}
     <div class="container my-5">
         <div class="row">
             {% for post in posts %}
@@ -20,4 +21,11 @@
             {{ knp_pagination_render(posts, 'shared/bootstrap_v5_pagination.html.twig') }}
         </div>
     </div>
+    {% else %}
+        <div class="container my-5">
+            <div class="row">
+                <p>Votre recherche n'a donné aucun résultat.</p>
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
