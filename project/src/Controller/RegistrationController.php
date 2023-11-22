@@ -7,6 +7,7 @@ use App\Form\RegistrationFormType;
 use App\Form\SearchType;
 use App\Model\SearchData;
 use App\Repository\Post\PostRepository;
+use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +26,7 @@ class RegistrationController extends AbstractController
     }
 
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, EntityManagerInterface $entityManager, LoginFormAuthenticator $authenticator): Response
     {
         $searchData = new SearchData();
         $form = $this->createForm(SearchType::class, $searchData);

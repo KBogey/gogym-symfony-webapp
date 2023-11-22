@@ -5,8 +5,7 @@
 {% endblock %}
 
 {% block intro %}
-    <h1>Go go go !</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut cumque ea earum explicabo fugiat nam pariatur quam tempora.</p>
+    {{ include('shared/_indexintro.html.twig', { indexTitle : "Go go go !", indexDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut cumque ea earum explicabo fugiat nam pariatur quam tempora.' }) }}
 {% endblock %}
 
 {% block body %}
