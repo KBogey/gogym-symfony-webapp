@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[UniqueEntity(
-    fields:['title', 'slug'],
+    fields:['slug'],
     message: 'Existe déjà'
 )]
 class Post
@@ -30,7 +30,7 @@ class Post
     private ?int $id = null;
 
     #[Assert\NotBlank]
-    #[ORM\Column(type: 'string', length: 255, unique: true)]
+    #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
 
     #[Assert\NotBlank]
@@ -77,7 +77,7 @@ class Post
     #[ORM\PrePersist]
     public function prePersist()
     {
-        $this->slug = (new Slugify())->slugify($this->title);
+        $this->slug = (new Slugify())->slugify($this->title.'-'.$this->id);
     }
 
     #[ORM\PreUpdate]

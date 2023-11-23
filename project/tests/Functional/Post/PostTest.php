@@ -16,16 +16,16 @@ class PostTest extends WebTestCase
     {
         $client = static::createClient();
 
-        /** @var UrlGeneratorInterface */
+        /** @var UrlGeneratorInterface $urlGeneratorInterface */
         $urlGeneratorInterface = $client->getContainer()->get('router');
 
-        /** @var EntityManagerInterface */
+        /** @var EntityManagerInterface $entityManager */
         $entityManager = $client->getContainer()->get('doctrine.orm.entity_manager');
 
-        /** @var  PostRepository */
+        /** @var  PostRepository $postRepository */
         $postRepository = $entityManager->getRepository(Post::class);
 
-        /** @var  Post */
+        /** @var  Post $post */
         $post = $postRepository->findOneBy([]);
 
         $client->request(
@@ -44,16 +44,16 @@ class PostTest extends WebTestCase
     {
         $client = static::createClient();
 
-        /** @var UrlGeneratorInterface */
+        /** @var UrlGeneratorInterface $urlGeneratorInterface */
         $urlGeneratorInterface = $client->getContainer()->get('router');
 
-        /** @var EntityManagerInterface */
+        /** @var EntityManagerInterface $entityManager */
         $entityManager = $client->getContainer()->get('doctrine.orm.entity_manager');
 
-        /** @var  PostRepository */
+        /** @var  PostRepository $postRepository */
         $postRepository = $entityManager->getRepository(Post::class);
 
-        /** @var  Post */
+        /** @var  Post $post */
         $post = $postRepository->findOneBy([]);
 
         $postLink = $urlGeneratorInterface->generate('public.post.show', ['slug' => $post->getSlug()]);
@@ -83,16 +83,16 @@ class PostTest extends WebTestCase
     {
         $client = static::createClient();
 
-        /** @var UrlGeneratorInterface */
+        /** @var UrlGeneratorInterface $urlGeneratorInterface */
         $urlGeneratorInterface = $client->getContainer()->get('router');
 
-        /** @var EntityManagerInterface */
+        /** @var EntityManagerInterface $entityManager */
         $entityManager = $client->getContainer()->get('doctrine.orm.entity_manager');
 
-        /** @var  PostRepository */
+        /** @var  PostRepository $postRepository */
         $postRepository = $entityManager->getRepository(Post::class);
 
-        /** @var  Post */
+        /** @var  Post $post */
         $post = $postRepository->findOneBy([]);
 
         $postLink = $urlGeneratorInterface->generate('public.post.show', ['slug' => $post->getSlug()]);
