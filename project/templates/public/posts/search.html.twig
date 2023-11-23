@@ -6,19 +6,22 @@
 
 {% block intro %}
 
-    {{ include('shared/_indexintro.html.twig', { indexTitle : "Votre recherche", indexDescription:  'Précisez votre recherche pour aller plus vite' }) }}
+    {{ include('shared/_indexintro.html.twig', { indexTitle : "Votre recherche", indexDescription:  '  ' }) }}
 
     <div class="container">
         {{ form_start(form) }}
-        <div class="form-control my-1 bg-pink-100">
-            {{ form_widget(form.q) }}
-        </div>
-        <div class="form-control my-1 bg-pink-100">
-            {{ form_widget(form.categories) }}
-        </div>
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-outline-dark mx-2" type="submit"><i class="bi bi-search"></i></button>
-        </div>
+            {{ form_widget(form.q, {'attr': {'class': 'form-check ms-2 mb-2', 'placeholder': 'Recherche par mot-clef...'}}) }}
+
+            {{ form_label(form.categories, 'Filtrer par catégorie',{'label_attr': {'class': 'form-label d-inline-block ms-2 mb-2 text-dark-emphasis'}}) }}
+            {% for checkbox in form.categories.children %}
+                <div class="d-inline-block justify-content-start text-dark-emphasis ms-3">
+                    {{ form_label(checkbox) }}
+                    {{ form_widget(checkbox) }}
+                </div>
+            {% endfor %}
+            <div class="d-flex justify-content-end me-2">
+                <button class="btn btn-outline-dark mx-2" type="submit">Filtrer <i class="bi bi-search"></i></button>
+            </div>
         {{ form_end(form) }}
     </div>
 

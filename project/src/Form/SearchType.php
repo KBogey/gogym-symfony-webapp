@@ -22,9 +22,7 @@ class SearchType extends AbstractType
             ])
             ->add('categories', EntityType::class, [
                 'class' =>Category::class,
-                'attr' => ['class' => 'd-inline-flex'],
                 'choice_label' => 'name',
-                'label_attr' => ['class' => 'mx-1'],
                 'expanded' => true,
                 'multiple' => true
             ]);
