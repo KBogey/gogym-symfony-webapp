@@ -16,6 +16,9 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
+/**
+ * @property PostRepository $postRepository
+ */
 class RegistrationController extends AbstractController
 {
     public function __construct(
@@ -28,21 +31,6 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, EntityManagerInterface $entityManager, LoginFormAuthenticator $authenticator): Response
     {
-        $searchData = new SearchData();
-        $form = $this->createForm(SearchType::class, $searchData);
-
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $searchData->page = $request->query->getInt('page', 1);
-            $posts = $this->postRepository->findBySearch($searchData);
-
-            return $this->render('public/posts/search.html.twig', [
-                'form' => $form->createView(),
-                'posts' => $posts
-            ]);
-        }
-
         $user = new User();
         $formRegister = $this->createForm(RegistrationFormType::class, $user);
         $formRegister->handleRequest($request);
@@ -68,7 +56,6 @@ class RegistrationController extends AbstractController
         }
 
         return $this->render('registration/register.html.twig', [
-            'form' => $form->createView(),
             'registrationForm' => $formRegister->createView(),
         ]);
     }

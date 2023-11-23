@@ -1,5 +1,9 @@
 {% extends 'public/base.html.twig' %}
 
+{% block search %}
+    {% include 'shared/_search_data.html.twig' with {form: form} only %}
+{% endblock %}
+
 {% block title %}
     Go gym | {{ post.title }}
 {% endblock %}

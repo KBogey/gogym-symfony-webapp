@@ -11,13 +11,18 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @property PaginatorInterface $paginator
+ */
 class HomeController extends AbstractController
 {
 
     public function __construct(
-        private PaginatorInterface $paginator
+        PaginatorInterface $paginator
     )
-    {}
+    {
+        $this->paginator = $paginator;
+    }
 
     #[Route('/', name: 'public.home')]
     public function index(PostRepository $postRepository, Request $request): Response

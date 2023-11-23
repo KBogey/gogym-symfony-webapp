@@ -48,7 +48,8 @@
                 <a class="nav-link" href="">Trouver une salle</a>
 
             </div>
-            {% include 'shared/_search_data.html.twig' with {form: form} only %}
+            {% block search %}
+            {% endblock %}
         </div>
 
     </div>

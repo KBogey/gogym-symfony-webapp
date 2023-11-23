@@ -11,6 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
+/**
+ * @property PostRepository $postRepository
+ */
 class SecurityController extends AbstractController
 {
     public function __construct(
@@ -23,21 +26,6 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'login')]
     public function login(AuthenticationUtils $authenticationUtils, Request $request): Response
     {
-        $searchData = new SearchData();
-        $form = $this->createForm(SearchType::class, $searchData);
-
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid())
-        {
-            $searchData->page = $request->query->getInt('page', 1);
-            $posts = $this->postRepository->findBySearch($searchData);
-
-            return $this->render('public/posts/search.html.twig', [
-                'form' => $form->createView(),
-                'posts' => $posts
-            ]);
-        }
-
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
@@ -48,7 +36,6 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', [
-            'form' => $form->createView(),
             'last_username' => $lastUsername,
             'error' => $error
         ]);

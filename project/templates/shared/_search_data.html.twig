@@ -3,4 +3,4 @@
     {{ form_widget(form.q) }}
     <button class="btn btn-outline-light mx-2" type="submit"><i class="bi bi-search"></i></button>
 </div>
-{{ form_end(form) }}
+{{ form_end(form, {render_rest: false}) }}

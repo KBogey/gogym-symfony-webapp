@@ -4,6 +4,10 @@
     Go gym | Bienvenue !
 {% endblock %}
 
+{% block search %}
+    {% include 'shared/_search_data.html.twig' with {form: form} only %}
+{% endblock %}
+
 {% block intro %}
     {{ include('shared/_indexintro.html.twig', { indexTitle : "Go go go !", indexDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut cumque ea earum explicabo fugiat nam pariatur quam tempora.' }) }}
 {% endblock %}

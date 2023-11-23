@@ -13,6 +13,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * @property PostRepository $repository
+ * @property CommentRepository $commentRepository
+ * @property PaginatorInterface $paginator
+ */
 class PostController extends AbstractController
 {
     public function __construct(
@@ -93,6 +98,7 @@ class PostController extends AbstractController
     #[Route('/post/{slug}', name: 'public.post.show', methods: ['GET'])]
     public function show(Post $post, Request $request): Response
     {
+
         $searchData = new SearchData();
         $form = $this->createForm(SearchType::class, $searchData);
 

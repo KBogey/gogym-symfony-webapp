@@ -51,6 +51,14 @@ class PostRepository extends ServiceEntityRepository
                 ->setParameter('q', "%{$searchData->q}%");
         }
 
+        if(!empty($searchData->categories))
+        {
+            $data = $data
+                ->join('p.category', 'c')
+                ->andWhere('c.id IN (:category)')
+                ->setParameter('category', $searchData->categories);
+        }
+
         $data = $data
             ->getQuery()
             ->getResult();
