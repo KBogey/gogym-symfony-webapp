@@ -2,8 +2,10 @@
 
 namespace App\Tests\Functional\Post;
 
+use App\Entity\Category;
 use App\Entity\Post\Post;
 use App\Entity\Tag;
+use App\Repository\CategoryRepository;
 use App\Repository\Post\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
