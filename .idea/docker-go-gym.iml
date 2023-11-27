@@ -142,6 +142,8 @@
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/psr/clock" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/clock" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/polyfill-php83" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/polyfill-uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/uid" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
