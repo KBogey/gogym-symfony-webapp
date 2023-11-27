@@ -5,7 +5,6 @@ namespace App\Controller\Public;
 use App\Entity\Post\Post;
 use App\Form\SearchType;
 use App\Model\SearchData;
-use App\Repository\CommentRepository;
 use App\Repository\Post\PostRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,19 +14,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @property PostRepository $repository
- * @property CommentRepository $commentRepository
  * @property PaginatorInterface $paginator
  */
 class PostController extends AbstractController
 {
     public function __construct(
         PostRepository $repository,
-        CommentRepository $commentRepository,
         PaginatorInterface $paginator
     )
     {
         $this->repository = $repository;
-        $this->commentRepository = $commentRepository;
         $this->paginator = $paginator;
     }
 
@@ -114,12 +110,9 @@ class PostController extends AbstractController
             ]);
         }
 
-        $comments = $this->commentRepository->findBy(['post' => $post], ['id' => 'desc']);
-
         return $this->render('public/posts/show.html.twig', [
             'form' => $form->createView(),
-            'post' => $post,
-            'comments' => $comments
+            'post' => $post
         ]);
     }
 }

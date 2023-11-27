@@ -73,7 +73,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "DataFixtures\\": "Fixtures/"
+            "DataFixtures\\": "src/Fixtures/"
         }
     },
     "autoload-dev": {
