@@ -22,6 +22,7 @@ class UserFixtures extends Fixture
         // My user
         $user = new User();
         $user->setEmail('alice@wonderland.fr')
+            ->setPseudo('aliceLaCoquine')
             ->setFirstName('Alice')
             ->setRoles(['ROLE_USER','ROLE_ADMIN'])
             ->setPassword(
@@ -32,7 +33,8 @@ class UserFixtures extends Fixture
 
         for ($i = 0; $i < 9; $i++) {
             $user = new User();
-            $user->setEmail($faker->email())
+            $user->setEmail($faker->unique()->email())
+                ->setPseudo($faker->unique()->word())
                 ->setLastName($faker->lastName())
                 ->setFirstName($faker->firstName())
                 ->setPassword(

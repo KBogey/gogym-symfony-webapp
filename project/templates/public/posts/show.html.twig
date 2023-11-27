@@ -13,7 +13,7 @@
         <a class="text-dark text-decoration-none" href="{{ post.category.id == 1 ? path('public.news.index') : path('public.diets.index') }}"><-</a>
         <span>{{ post.category.id == 1 ? "Les dernières news !" : "Du nouveau côté nutrition !" }}</span>
         <h1>{{ post.title | capitalize }}</h1>
-        <p>{% for tag in post.tags %}<span class="bg-primary-subtle">#{{ tag.label | capitalize }}</span>{% endfor %}
+        <p>{% for tag in post.tags %}<span class="bg-primary-subtle me-4">#{{ tag.label | capitalize }}</span>{% endfor %}
         </p>
         <div class="row text-center">
             {% include "shared/_share.html.twig" %}

@@ -16,8 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 #[ORM\HasLifecycleCallbacks]
 #[UniqueEntity(
-    fields:['slug'],
-    message: 'Existe déjà'
+    fields:['slug', 'title'],
+    message: 'Ce titre/slug existe déjà'
 )]
 class Post
 {
@@ -29,7 +29,7 @@ class Post
     private ?int $id = null;
 
     #[Assert\NotBlank]
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, unique: true)]
     private ?string $title = null;
 
     #[Assert\NotBlank]

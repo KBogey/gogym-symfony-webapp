@@ -23,20 +23,24 @@ class PostFixtures extends Fixture implements DependentFixtureInterface
         $categories = $this->categoryRepository->findAll();
         $tags = $this->tagRepository->findAll();
 
-        for ($i = 0; $i < 150; $i++) {
+        $posts = [];
+        for ($i = 0; $i < 100; $i++) {
             $post = new Post();
-            $post->setTitle($faker->words(4, true))
+            $post->setTitle($faker->unique()->words(4, true))
                 ->setContent($faker->realText(1800))
                 ->setState(mt_rand(0, 2) === 1 ? Post::STATES[0] : Post::STATES[1])
                 ->setCategory($categories[mt_rand(0, count($categories) - 1)]);
 
-                for ($i = 0; $i < mt_rand(1, 5); $i++) {
-                    $post->addTag(
-                        $tags[mt_rand(0, count($tags) - 1)]
-                    );
-                }
-
             $manager->persist($post);
+            $posts[] = $post;
+        }
+
+        foreach ($posts as $post) {
+            for ($i = 0; $i < mt_rand(1, 5); $i++) {
+                $post->addTag(
+                    $tags[mt_rand(0, count($tags) - 1)]
+                );
+            }
         }
 
 

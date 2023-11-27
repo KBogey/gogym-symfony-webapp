@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'Cet email est déjà enregistré')]
+#[UniqueEntity(fields: ['email', 'pseudo'], message: 'Cet email/pseudo est déjà enregistré')]
 #[ORM\HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -21,8 +21,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $id = null;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank()]
     private string $avatar;
+
+    #[ORM\Column(type: 'string', length: 255, unique:true)]
+    #[Assert\NotBlank()]
+    private string $pseudo;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
     #[Assert\NotBlank()]
@@ -43,7 +46,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column(type: 'string', length: 255)]
-    #[Assert\NotBlank()]
+    #[Assert\Length(min: 2, max: 255)]
     private ?string $password = null;
 
     #[ORM\Column(type: 'datetime_immutable')]
@@ -63,13 +66,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\PrePersist]
     public function prePersist(): void
     {
-        $this->avatar = 'https://api.dicebear.com/7.x/adventurer-neutral/'. $this->email .'svg';
+        $this->avatar = 'https://api.dicebear.com/7.x/lorelei-neutral/svg';
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     #[ORM\PreUpdate]
     public function preUpdate(): void
     {
-        $this->avatar = 'https://api.dicebear.com/7.x/adventurer-neutral/'. $this->email .'svg';
+        $this->avatar = 'https://api.dicebear.com/7.x/lorelei-neutral/svg';
         $this->updatedAt = new \DateTimeImmutable();
     }
 
@@ -81,6 +85,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getAvatar(): string
     {
         return $this->avatar;
+    }
+
+    public function getPseudo(): string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
     }
 
     public function getEmail(): string
