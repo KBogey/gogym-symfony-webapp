@@ -1,0 +1,23 @@
+{% extends 'public/base.html.twig' %}
+
+{% block title %} Go gym | Inscription {% endblock %}
+
+{% block intro %}
+<div class="container d-block-flex justify-content-center w-25">
+    <h1>S'enregistrer</h1>
+    <div class="container py-4">
+        {{ form_errors(registrationForm) }}
+
+        {{ form_start(registrationForm) }}
+            {{ form_row(registrationForm.pseudo) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword) }}
+            {{ form_row(registrationForm.lastName) }}
+            {{ form_row(registrationForm.firstName) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+
+            <button type="submit" class="btn btn-outline-primary">S'enregistrer</button>
+        {{ form_end(registrationForm) }}
+    </div>
+</div>
+{% endblock %}
