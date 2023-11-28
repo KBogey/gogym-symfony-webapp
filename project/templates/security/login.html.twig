@@ -4,9 +4,9 @@
 
 {% block intro %}
     <div class="container d-block-flex justify-content-center w-25">
-        <form method="post">
+        <form name='login' method="post">
             {% if error %}
-                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                <div class="error-login alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
             <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
@@ -22,7 +22,7 @@
             >
             <div class="checkbox my-2">
                 <label>
-                    <input type="checkbox" name="_remember_me"> Se souvenir de moi
+                    <input type="checkbox" name="_remember_me"> Rester connecté
                 </label>
             </div>
 

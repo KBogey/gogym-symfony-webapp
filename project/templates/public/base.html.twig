@@ -21,7 +21,7 @@
         <a class="nav-link" href="#"><i class="bi bi-envelope-heart"></i> go@gym.fr</a>
         <div class="d-inline-flex justify-content-around">
             {% if app.user %}
-                <a class="link-danger mx-2" href="{{ path('app_logout') }}"><i class="bi bi-fingerprint"></i> Se déconnecter</a>
+                <a class="link-danger mx-2" href="{{ path('logout') }}"><i class="bi bi-fingerprint"></i> Se déconnecter</a>
             {% else %}
                 <a class="nav-link mx-2" href="{{ path('login') }}"><i class="bi bi-fingerprint"></i> Se connecter</a>
             {% endif %}

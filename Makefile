@@ -63,15 +63,17 @@ composer-install: ## Install dependencies
 	$(COMPOSER) install
 composer-update: ## Update dependencies
 	$(COMPOSER) update
-composer-require:
+composer-require: ## Install webpack
 	$(COMPOSER) require symfony/webpack-encore-bundle
+composer-dump: ## Dump autoload
+	$(COMPOSER) dump-autoload
 
 ## —— 🐈 NPM ————————————————————————————————————————————————————————————————————
 npm-install: ## Install all npm dependencies
 	$(NPM) install
 npm-update: ## Update all npm dependencies
 	$(NPM) update
-npm-watch: ## Update all npm dependencies
+npm-watch: ## Watch at modification
 	$(NPM) run watch
 
 ## —— 📊 Database ——
@@ -81,7 +83,7 @@ database-init: ## Init database
 	$(MAKE) database-migrate
 	$(MAKE) database-fixtures-load
 
-database-drop: ## Create database
+database-drop: ## Drop database
 	$(SYMFONY_CONSOLE) d:d:d --force --if-exists
 
 database-create: ## Create database
