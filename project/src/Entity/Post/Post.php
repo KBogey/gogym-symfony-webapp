@@ -4,12 +4,14 @@ namespace App\Entity\Post;
 
 use App\Entity\Category;
 use App\Entity\Tag;
+use App\Entity\User;
 use App\Repository\Post\PostRepository;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -62,11 +64,16 @@ class Post
     #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'posts', cascade: ['persist'])]
     private Collection $tags;
 
+    #[ORM\ManyToMany(targetEntity: User::class)]
+    #[ORM\JoinTable('user_post_like')]
+    private Collection $likes;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
         $this->updatedAt = new \DateTimeImmutable();
         $this->tags = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     #[ORM\PrePersist]
@@ -190,7 +197,7 @@ class Post
         return $this->tags;
     }
 
-    public function addTag(Tag $tag): static
+    public function addTag(Tag $tag): self
     {
         if (!$this->tags->contains($tag)) {
             $this->tags->add($tag);
@@ -200,13 +207,39 @@ class Post
         return $this;
     }
 
-    public function removeTag(Tag $tag): static
+    public function removeTag(Tag $tag): self
     {
         if ($this->tags->removeElement($tag)) {
             $tag->removePost($this);
         }
 
         return $this;
+    }
+
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(User $like): self
+    {
+        if(!$this->likes->contains($like)) {
+            $this->likes[] = $like;
+        }
+
+        return $this;
+    }
+
+    public function removeLike(User $like): self
+    {
+        $this->likes->removeElement($like);
+
+        return $this;
+    }
+
+    public function isLikedByUser(User $user): bool
+    {
+        return $this->likes->contains($user);
     }
 
     public function __toString()

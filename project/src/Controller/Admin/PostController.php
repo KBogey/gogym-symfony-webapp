@@ -23,7 +23,7 @@ class PostController extends AbstractController
         $this->em = $em;
     }
 
-    #[Route('/admin/posts', name: 'admin.posts.index')]
+    #[Route('/admin/articles', name: 'admin.posts.index')]
     public function index(): Response
     {
         $posts = $this->repository->findAll();
@@ -33,7 +33,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/posts/create', name: 'admin.posts.create')]
+    #[Route('/admin/article/create', name: 'admin.post.create')]
     public function new(Request $request)
     {
         $post = new Post();
@@ -54,7 +54,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/posts/edit/{postId}', name: 'admin.posts.edit' )]
+    #[Route('/admin/article/modifier/{postId}', name: 'admin.post.edit' )]
     public function edit($postId, Request $request)
     {
         $post = $this->repository->find($postId);
@@ -90,7 +90,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/posts/{postId}', name:'admin.posts.delete' )]
+    #[Route('/admin/article/{postId}', name:'admin.post.delete' )]
     public function delete($postId, Request $request)
     {
         $post = $this->repository->find($postId);

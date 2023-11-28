@@ -6,7 +6,7 @@
 {% block intro %}
     <div class="container-fluid d-inline-flex justify-content-between mb-3">
         <h3>Gérer les articles</h3>
-        <a href="{{ path('admin.posts.create') }}" class="btn btn-outline-success px-4 py-2">Ajouter un article</a>
+        <a href="{{ path('admin.post.create') }}" class="btn btn-outline-success px-4 py-2">Ajouter un article</a>
     </div>
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
@@ -39,8 +39,8 @@
                         {% endfor %}
                     </td>
                     <td class="text-end">
-                        <a href="{{ path('admin.posts.edit', {postId: post.id}) }}" class="btn btn-outline-warning my-1">Éditer</a>
-                        <form method="post" action="{{ path('admin.posts.delete', {postId: post.id }) }}">
+                        <a href="{{ path('admin.post.edit', {postId: post.id}) }}" class="btn btn-outline-warning my-1">Éditer</a>
+                        <form method="post" action="{{ path('admin.post.delete', {postId: post.id }) }}">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ post.id) }}">
                             <button class="btn btn-outline-danger my-1">

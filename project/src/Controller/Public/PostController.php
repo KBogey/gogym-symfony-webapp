@@ -91,7 +91,7 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/post/{slug}', name: 'public.post.show', methods: ['GET'])]
+    #[Route('/article/{slug}', name: 'public.post.show', methods: ['GET'])]
     public function show(Post $post, Request $request): Response
     {
 

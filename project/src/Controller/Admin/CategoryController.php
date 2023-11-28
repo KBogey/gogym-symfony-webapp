@@ -32,7 +32,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/category/create', name: 'admin.category.create')]
+    #[Route('/admin/categorie/create', name: 'admin.category.create')]
     public function new(Request $request)
     {
         $category = new Category();
@@ -52,7 +52,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/category/edit/{categoryId}', name: 'admin.category.edit' )]
+    #[Route('/admin/categorie/edit/{categoryId}', name: 'admin.category.edit' )]
     public function edit($categoryId, Request $request)
     {
         $category = $this->repository->find($categoryId);
@@ -73,7 +73,7 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/category/{categoryId}', name:'admin.category.delete' )]
+    #[Route('/admin/categorie/{categoryId}', name:'admin.category.delete' )]
     public function delete($categoryId, Request $request)
     {
         $category = $this->repository->find($categoryId);
