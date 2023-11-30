@@ -3,7 +3,7 @@ version: '3'
 services:
   db:
     image: mysql
-    container_name: db_gogym_symfony
+    container_name: db_go_gym_symfony
     restart: always
     volumes:
       - db-data:/var/lib/mysql
@@ -14,7 +14,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: phpmyadmin_gogym_symfony
+    container_name: phpmyadmin_go_gym_symfony
     depends_on:
       - db
     ports:
@@ -26,7 +26,7 @@ services:
 
   www:
     build: docker
-    container_name: www_gogym_symfony
+    container_name: www_go_gym_symfony
     ports:
       - "8000:80"
     volumes:
