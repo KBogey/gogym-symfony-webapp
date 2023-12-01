@@ -5,7 +5,6 @@
       <sourceFolder url="file://$MODULE_DIR$/project/src" isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/project/tests" isTestSource="true" packagePrefix="App\Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/project/src/Fixtures" isTestSource="false" packagePrefix="DataFixtures\" />
-      <sourceFolder url="file://$MODULE_DIR$/project/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/composer" />
@@ -144,6 +143,9 @@
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/polyfill-php83" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/polyfill-uuid" />
       <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/uid" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/dbrekelmans/bdi" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/php-webdriver/webdriver" />
+      <excludeFolder url="file://$MODULE_DIR$/project/vendor/symfony/panther" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

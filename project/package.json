@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@popperjs/core": "^2.11.8",
+        "axios": "^1.6.2",
         "bootstrap-icons": "^1.11.1"
     }
 }
