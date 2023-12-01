@@ -21,13 +21,21 @@ class LikeController extends AbstractController
             $post->removeLike($user);
             $manager->flush();
 
-            return $this->json(['message' => 'Le like a été supprimé !']);
+            return $this->json([
+                    'message' => 'Le like a été supprimé.',
+                    'nbLike' => $post->howManyLikes()
+                ]
+            );
         }
 
         $post->addLike($user);
         $manager->flush();
 
-        return $this->json(['message' => 'Le like a été ajouté !']);
+        return $this->json([
+                'message' => 'Le like a été ajouté.',
+                'nbLike' => $post->howManyLikes()
+            ]
+        );
 
     }
 }

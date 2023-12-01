@@ -7,9 +7,17 @@
 
 // any CSS you import will output into a single css file (app.scss in this case)
 import './styles/app.scss';
+import Like from './scripts/like';
 
-console.log("Webpack Encore is working !");
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Webpack Encore is working !');
 
-// Import all of Bootstrap's JS
-import * as bootstrap from 'bootstrap'
+    // Like's system
+    const likeElements = [].slice.call(document.querySelectorAll('a[data-action="like"]'));
+    console.log(likeElements);
+    if (likeElements) {
+        new Like(likeElements);
+    }
+})
+
 
