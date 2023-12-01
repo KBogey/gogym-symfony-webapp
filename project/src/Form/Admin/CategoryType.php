@@ -2,7 +2,7 @@
 
 namespace App\Form\Admin;
 
-use App\Entity\Category;
+use App\Entity\Post\Category;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

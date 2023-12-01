@@ -2,8 +2,8 @@
 
 namespace App\Fixtures;
 
-use App\Entity\Category;
-use App\Entity\Tag;
+use App\Entity\Post\Category;
+use App\Entity\Post\Tag;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;

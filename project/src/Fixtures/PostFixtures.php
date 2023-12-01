@@ -2,13 +2,13 @@
 
 namespace App\Fixtures;
 
-use App\Repository\TagRepository;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Faker\Factory;
 use App\Entity\Post\Post;
-use App\Repository\CategoryRepository;
-use Doctrine\Persistence\ObjectManager;
+use App\Repository\Post\CategoryRepository;
+use App\Repository\Post\TagRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
 
 class PostFixtures extends Fixture implements DependentFixtureInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repository;
+namespace App\Repository\Post;
 
-use App\Entity\Tag;
+use App\Entity\Post\Tag;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Tag>
+ * @extends ServiceEntityRepository<\App\Entity\Post\Tag>
  *
  * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
  * @method Tag|null findOneBy(array $criteria, array $orderBy = null)

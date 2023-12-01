@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Post;
 
-use App\Entity\Post\Post;
-use App\Repository\CategoryRepository;
+use App\Repository\Post\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;

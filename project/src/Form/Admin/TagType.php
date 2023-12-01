@@ -2,7 +2,7 @@
 
 namespace App\Form\Admin;
 
-use App\Entity\Tag;
+use App\Entity\Post\Tag;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;

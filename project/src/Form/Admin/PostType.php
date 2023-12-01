@@ -2,7 +2,7 @@
 
 namespace App\Form\Admin;
 
-use App\Entity\Category;
+use App\Entity\Post\Category;
 use App\Entity\Post\Post;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;

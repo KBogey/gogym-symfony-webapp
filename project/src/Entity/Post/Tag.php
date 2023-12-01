@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Entity;
+namespace App\Entity\Post;
 
-use App\Entity\Post\Post;
-use App\Repository\TagRepository;
+use App\Repository\Post\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
