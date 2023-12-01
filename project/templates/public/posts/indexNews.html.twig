@@ -1,17 +1,37 @@
 {% extends 'public/base.html.twig' %}
 
-{% block search %}
-    {% include 'shared/_search_data.html.twig' with {form: form} only %}
+{% block style %}
+    <style>
+        .intro-wrap {
+            position: relative;
+            overflow: hidden;
+        }
+        .intro-bg {
+            object-fit: cover;
+            object-position: center;
+            opacity: 0.4;
+            position: absolute;
+            left: 0;
+            top: -10%;
+            width: 100%;
+            height: auto;
+        }
+    </style>
 {% endblock %}
 
 {% block title %}
     Go gym | Les dernières news
 {% endblock %}
 
+{% block search %}
+    {% include 'shared/_search_data.html.twig' with {form: form} %}
+{% endblock %}
+
 {% block intro %}
-
+<div class="intro-wrap w-100" style="position: relative; overflow: hidden; padding-top: 5rem; padding-bottom: 15rem">
+    <img class="intro-bg" src="{{ asset("build/images/intro.jpg") }}" alt="Go gym news">
     {{ include('shared/_indexintro.html.twig', { indexTitle : "Les dernières news !", indexDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam architecto aspernatur aut consectetur consequuntur, corporis cupiditate deleniti deserunt dignissimos doloremque eius eligendi enim eveniet expedita fuga iure labore laboriosam laudantium nisi numquam officia perferendis porro possimus praesentium quae quia quod quos sapiente sint soluta ullam voluptates voluptatum! Aliquam, aperiam!' }) }}
-
+</div>
 {% endblock %}
 
 {% block body %}

@@ -9,7 +9,9 @@
 {% endblock %}
 
 {% block intro %}
-    {{ include('shared/_indexintro.html.twig', { indexTitle : "Go go go !", indexDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut cumque ea earum explicabo fugiat nam pariatur quam tempora.' }) }}
+    <div class="bg-pink-100 w-100 p-5">
+        {{ include('shared/_indexintro.html.twig', { indexTitle : "Go go go !", indexDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aliquam aut cumque ea earum explicabo fugiat nam pariatur quam tempora.' }) }}
+    </div>
 {% endblock %}
 
 {% block body %}

@@ -1,17 +1,17 @@
 {% extends 'public/base.html.twig' %}
 
-{% block search %}
-    {% include 'shared/_search_data.html.twig' with {form: form} only %}
-{% endblock %}
-
 {% block title %}
     Go gym | Du nouveau côté nutrition !
 {% endblock %}
 
+{% block search %}
+    {% include 'shared/_search_data.html.twig' with {form: form} only %}
+{% endblock %}
+
 {% block intro %}
-
-    {{ include('shared/_indexintro.html.twig', { indexTitle : "Du nouveau côté nutrition !", indexDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam architecto aspernatur aut consectetur consequuntur, corporis cupiditate deleniti deserunt dignissimos doloremque eius eligendi enim eveniet expedita fuga iure labore !' }) }}
-
+    <div class="bg-pink-100 w-100 p-5">
+        {{ include('shared/_indexintro.html.twig', { indexTitle : "Du nouveau côté nutrition !", indexDescription: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad aperiam architecto aspernatur aut consectetur consequuntur, corporis cupiditate deleniti deserunt dignissimos doloremque eius eligendi enim eveniet expedita fuga iure labore !' }) }}
+    </div>
 {% endblock %}
 
 {% block body %}

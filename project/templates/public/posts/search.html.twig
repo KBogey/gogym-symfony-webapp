@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block intro %}
-
+<div class="bg-pink-100 w-100 p-5">
     {{ include('shared/_indexintro.html.twig', { indexTitle : "Votre recherche", indexDescription:  '  ' }) }}
 
     <div class="container">
@@ -24,7 +24,7 @@
             </div>
         {{ form_end(form) }}
     </div>
-
+</div>
 {% endblock %}
 
 {% block body %}
