@@ -1,0 +1,36 @@
+{% if comment.isApproved %}
+    <div class="comment d-flex justify-content-start my-4 relative rounded shadow bg-white">
+        {% if app.user == comment.author %}
+            <div class="comment__delete right-0 p-3">
+                <form name="comment_delete" method="post" action="{{ path('comment.delete', {'id': comment.id}) }}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                    <button type="submit" class="btn btn-outline-danger">
+                        <i class="bi bi-trash3-fill"></i>
+                    </button>
+                </form>
+
+            </div>
+        {% endif %}
+        <div>
+            <div class="d-block p-3">
+                <div class="d-md-flex d-md-inline">
+                    <div class="d-flex justify-content-start mb-6 mx-auto" style="width: 120px;">
+                        {% if comment.author.avatar %}
+                            <img src="{{ comment.author.avatar }}" alt="{{ comment.author }}'s avatar" class="img-thumbnail"/>
+                        {% else %}
+                            <img src="https://yt3.ggpht.com/QAbtCWyrOI4SbZIqzQP7w8C9fWQhHfSg7UoIDUmDlOpVlkbvTuOJc8E-R8K8wh0Pe9Vki7VsOr8=s88-c-k-c0x00ffffff-no-rj" alt="Avatar" class="img-thumbnail">
+                        {% endif %}
+                    </div>
+                    <div class="ms-md-5">
+                        <p class="mb-6">
+                            {{ comment.content|raw }}
+                        </p>
+                        <p class="fw-semibold text-sm-end mb-2 text-gray-800">{{ comment.author|capitalize }}</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endif %}

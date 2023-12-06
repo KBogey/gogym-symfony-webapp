@@ -2,10 +2,13 @@
 
 namespace App\Controller\Public;
 
+use App\Entity\Post\Comment;
 use App\Entity\Post\Post;
+use App\Form\CommentType;
 use App\Form\SearchType;
 use App\Model\SearchData;
 use App\Repository\Post\PostRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -91,9 +94,26 @@ class PostController extends AbstractController
         ]);
     }
 
-    #[Route('/article/{slug}', name: 'public.post.show', methods: ['GET'])]
-    public function show(Post $post, Request $request): Response
+    #[Route('/article/{slug}', name: 'public.post.show', methods: ['GET', 'POST'])]
+    public function show(Post $post, Request $request, EntityManagerInterface $em): Response
     {
+
+        $comment = new Comment();
+        $comment->setPost($post);
+        if($this->getUser()) {
+            $comment->setAuthor($this->getUser());
+        }
+
+        $formComment = $this->createForm(CommentType::class, $comment);
+        $formComment->handleRequest($request);
+        if($formComment->isSubmitted() && $formComment->isValid()) {
+            $em->persist($comment);
+            $em->flush();
+
+            $this->addFlash('success', 'Votre commentaire a bien été enregistré. Il sera soumis à modération dans les plus brefs délais.');
+
+            return $this->redirectToRoute('public.post.show', ['slug' => $post->getSlug()]);
+        }
 
         $searchData = new SearchData();
         $form = $this->createForm(SearchType::class, $searchData);
@@ -111,6 +131,7 @@ class PostController extends AbstractController
         }
 
         return $this->render('public/posts/show.html.twig', [
+            'formComment' => $formComment->createView(),
             'form' => $form->createView(),
             'post' => $post
         ]);

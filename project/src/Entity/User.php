@@ -210,4 +210,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->updatedAt = $updatedAt;
         return $this;
     }
+
+    public function __toString()
+    {
+        return $this->pseudo;
+    }
 }
